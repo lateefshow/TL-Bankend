@@ -14,7 +14,8 @@ const router = Router();
 
 // ---------------- SELLER ROUTES ----------------
 // Create a new service with image upload
-router.post("/create", protect, uploadServiceImages, createService);
+router.post("/create", uploadServiceImages, createService);
+//router.post("/create", protect, uploadServiceImages, createService);
 // Update a service with optional new image upload
 router.put("/edit/:serviceId", protect, uploadServiceImages, updateService);
 // Delete a service
