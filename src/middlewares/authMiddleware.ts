@@ -1,8 +1,10 @@
+// authMiddleware.js
+
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
 interface AuthRequest extends Request {
-  user?: { id: string; role: string };
+  user?: { _id: string; role: string };
 }
 
 export const protect = (
@@ -23,7 +25,11 @@ export const protect = (
         role: string;
       };
 
-      req.user = decoded;
+      // Corrected line: Assign the decoded 'id' to '_id'
+      req.user = {
+        _id: decoded.id,
+        role: decoded.role,
+      };
 
       return next();
     } catch (error) {
